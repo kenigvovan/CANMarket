@@ -92,6 +92,7 @@
   <ItemGroup>
     <None Include="assets\canmarket\blocktypes\canstall.json" />
     <None Include="assets\canmarket\blocktypes\warehouse.json" />
+    <None Include="assets\canmarket\recipes\grid\canstall.json" />
     <None Include="assets\canmarket\recipes\grid\canwarehouse.json" />
     <Compile Include="src\BEB\BEBehaviorTrackLastUpdatedContainer.cs" />
     <Compile Include="src\BE\BECANStall.cs" />

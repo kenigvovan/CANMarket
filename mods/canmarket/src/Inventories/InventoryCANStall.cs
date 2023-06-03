@@ -155,9 +155,35 @@ namespace canmarket.src.Inventories
         }
         public override void DropAll(Vec3d pos, int maxStackSize = 0)
         {
-            //drop 0, 1 slots!!
-            //todo
-            //now we will only have clone slots
+            //drop only 0, 1 slots with book, other slots are clones
+            int i = 0;
+            foreach(var it in this.slots)
+            {
+                if(i > 1)
+                {
+                    break;
+                }
+                if (it == null || it.Itemstack == null)
+                {
+                    continue;
+                }
+                
+                if (maxStackSize > 0)
+                {
+                    while (it.Itemstack.StackSize > 0)
+                    {
+                        ItemStack itemstack = it.TakeOut(GameMath.Clamp(it.StackSize, 1, maxStackSize));
+                        Api.World.SpawnItemEntity(itemstack, pos);
+                    }
+                }
+                else
+                {
+                    Api.World.SpawnItemEntity(it.Itemstack, pos);
+                }
+
+                it.Itemstack = null;
+                it.MarkDirty();
+            }
         }
     }
 }

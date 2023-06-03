@@ -15,7 +15,7 @@
         }
       },
       "iron": {
-        "quantitySlots": 26,
+        "quantitySlots": 74,
         "rotatatableInterval": "22.5deg",
         "shape": {
           "base": "canmarket:block/stall",

@@ -1,11 +1,11 @@
 {
   "type": "code",
   "modid": "canmarket",
-  "name": "canmarket",
+  "name": "CANMarket",
   "author": "KenigVovan",
-  "description": "Market blocks and simple currency",
-  "version": "0.2.8",
-  "dependency": {
+  "description": "Trade blocks and simple currency items",
+  "version": "0.3.0",
+  "dependencies": {
     "game": ""
   }
 }

@@ -89,7 +89,7 @@ namespace canmarket.src
         {
             if (accessType == EnumBlockAccessFlags.Use)
             {
-                if (blockSel.Block != null && blockSel.Block.Class.Equals("BlockCANMarket"))
+                if (blockSel.Block != null && (blockSel.Block.Class.Equals("BlockCANMarket") || blockSel.Block.Class.Equals("BlockCANStall")) /*BlockCANStall*/)
                 {
                     __result = EnumWorldAccessResponse.Granted;
                     return false;
