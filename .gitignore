@@ -1,0 +1,11 @@
+bin
+obj
+releases
+packages
+Properties
+ICSharpCode.SharpZipLib.dll
+modtools.command
+modtools.temp
+Newtonsoft.Json.dll
+packages.config
+.vs

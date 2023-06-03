@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9065978F-6F69-4A58-B5A8-E137FA0F019F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>canmarket</RootNamespace>
+    <AssemblyName>canmarket</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>$(ProjectDir)\bin</OutputPath>
+    <IntermediateOutputPath>..\..\obj\Debug\canmarket\</IntermediateOutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>$(ProjectDir)\bin</OutputPath>
+    <IntermediateOutputPath>..\..\obj\Release\canmarket\</IntermediateOutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\AppData\Roaming\Vintagestory\Lib\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VintagestoryAPI">
+      <HintPath>$(AppData)\Vintagestory\VintagestoryAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VintagestoryLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\AppData\Roaming\Vintagestory\VintagestoryLib.dll</HintPath>
+    </Reference>
+    <Reference Include="VSSurvivalMod">
+      <HintPath>$(AppData)\Vintagestory\Mods\VSSurvivalMod.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VSEssentials">
+      <HintPath>$(AppData)\Vintagestory\Mods\VSEssentials.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VSCreativeMod">
+      <HintPath>$(AppData)\Vintagestory\Mods\VSCreativeMod.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(AppData)\Vintagestory\Lib\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\canmarket\textures\acacia-inside.png" />
+    <Content Include="assets\canmarket\textures\aged-inside.png" />
+    <Content Include="assets\canmarket\textures\baldcypress-inside.png" />
+    <Content Include="assets\canmarket\textures\birch-inside.png" />
+    <Content Include="assets\canmarket\textures\ebony-inside.png" />
+    <Content Include="assets\canmarket\textures\generic.png" />
+    <Content Include="assets\canmarket\textures\log-inside.png" />
+    <Content Include="assets\canmarket\textures\kapok-inside.png" />
+    <Content Include="assets\canmarket\textures\larch-inside.png" />
+    <Content Include="assets\canmarket\textures\light-aged-inside.png" />
+    <Content Include="assets\canmarket\textures\maple-inside.png" />
+    <Content Include="assets\canmarket\textures\oak-inside.png" />
+    <Content Include="assets\canmarket\textures\pine-inside.png" />
+    <Content Include="assets\canmarket\textures\purpleheart-inside.png" />
+    <Content Include="assets\canmarket\textures\redwood-inside.png" />
+    <Content Include="assets\canmarket\textures\side01.png" />
+    <Content Include="assets\canmarket\textures\walnut-inside.png" />
+    <Content Include="modinfo.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\canmarket\blocktypes\canstall.json" />
+    <None Include="assets\canmarket\blocktypes\warehouse.json" />
+    <None Include="assets\canmarket\recipes\grid\canwarehouse.json" />
+    <Compile Include="src\BEB\BEBehaviorTrackLastUpdatedContainer.cs" />
+    <Compile Include="src\BE\BECANStall.cs" />
+    <Compile Include="src\BE\BECANWareHouse.cs" />
+    <Compile Include="src\BE\BEMarket.cs" />
+    <Compile Include="src\Blocks\BlockCANStall.cs" />
+    <Compile Include="src\Blocks\BlockCANWareHouse.cs" />
+    <Compile Include="src\Blocks\Properties\StallProperties.cs" />
+    <Compile Include="src\Blocks\Properties\StallTypeProperties.cs" />
+    <Compile Include="src\Config.cs" />
+    <Compile Include="src\GUI\GUIDialogCANStall.cs" />
+    <Compile Include="src\GUI\GUIDialogCANWareHouse.cs" />
+    <Compile Include="src\harmPatches.cs" />
+    <Compile Include="src\Inventories\InventoryCANWareHouse.cs" />
+    <Compile Include="src\Inventories\slots\Stall\CANChestsListItemSlot.cs" />
+    <Compile Include="src\Inventories\slots\OnChest\CANCostItemSlotOnChest.cs" />
+    <Compile Include="src\Inventories\slots\CANCostItemSlotAbstract.cs" />
+    <Compile Include="src\Inventories\slots\Stall\CANCostItemSlotStall.cs" />
+    <Compile Include="src\Inventories\slots\CANNoPerishItemSlot.cs" />
+    <Compile Include="src\Inventories\slots\Stall\CANLogBookSItemSlot.cs" />
+    <Compile Include="src\Inventories\slots\Stall\CANTakeOutItemSlotStall.cs" />
+    <Compile Include="src\Inventories\slots\OnChest\CANTakeOutItemSlot.OnChest.cs" />
+    <Compile Include="src\Inventories\slots\CANTakeOutItemSlotAbstract.cs" />
+    <Compile Include="src\Inventories\InventoryCANStall.cs" />
+    <Compile Include="src\Inventories\TMPTradeInv.cs" />
+    <Compile Include="src\Items\ItemCANStallBook.cs" />
+    <Compile Include="src\Render\BECANMarketRenderer.cs" />
+    <Compile Include="src\Utils\UsefullUtils.cs" />
+    <None Include="assets\canmarket\blocktypes\canblockmarket.json" />
+    <Compile Include="src\BE\BECANMarket.cs" />
+    <Compile Include="src\Blocks\BlockCANMarket.cs" />
+    <Compile Include="src\canmarket.cs" />
+    <Compile Include="src\GUI\GUIDialogCANMarketOwner.cs" />
+    <Compile Include="src\Inventories\InventoryCANMarketOnChest.cs" />
+    <Compile Include="src\Items\ItemCANGearPayment.cs" />
+    <None Include="assets\canmarket\itemtypes\canchestslist.json" />
+    <None Include="assets\canmarket\lang\en.json" />
+    <None Include="assets\canmarket\patches\canmarket-add-bebehavior.json" />
+    <None Include="assets\canmarket\recipes\grid\canwarehousebook.json" />
+    <None Include="assets\canmarket\recipes\grid\onchestmarketblock.json" />
+    <None Include="assets\canmarket\shapes\block\canblockmarket.json" />
+    <None Include="assets\canmarket\shapes\block\marketbase2.json" />
+    <None Include="assets\canmarket\shapes\block\normal-closed.json" />
+    <None Include="assets\canmarket\shapes\block\onchestmarketblock3.json" />
+    <None Include="assets\canmarket\shapes\block\onchesttradeblock.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\canmarket\itemtypes\cangearpayment.json" />
+    <None Include="assets\canmarket\shapes\block\stall.json" />
+    <None Include="assets\canmarket\shapes\block\warehouse.json" />
+    <None Include="assets\canmarket\shapes\gear-payment.json" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+copy "$(TargetPath)" "$(ProjectDir)" 
+copy "$(TargetDir)\$(TargetName).pdb" "$(ProjectDir)" 
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions />
+</Project>
