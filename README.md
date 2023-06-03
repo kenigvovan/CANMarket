@@ -1,4 +1,5 @@
-CANMarket mod for Vintagestory game, adds trade blocks, metal gears as currency without craft.<br>
+CANMarket<br>
+mod for Vintagestory game, adds trade blocks, metal gears as currency without craft.<br>
 [modDB link](https://mods.vintagestory.at/canmarket)
 
 Inspired by mod for TFC Minecraft mod MerchantsTFC by Aleksey-Terzi
