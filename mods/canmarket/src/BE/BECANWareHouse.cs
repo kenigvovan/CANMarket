@@ -53,7 +53,7 @@ namespace canmarket.src.BE
         public Dictionary<string, int> quantities = new Dictionary<string, int>();
         public List<Vec3i> containerLocations = new List<Vec3i>();
         private int key = 1;
-        private static readonly int _searchContainerRadius = 3;
+        private static readonly int _searchContainerRadius = Config.Current.SEARCH_CONTAINER_RADIUS.Val;
         public BECANWareHouse()
         {            
             this.inventory = new InventoryCANWareHouse((string)null, (ICoreAPI)null);
@@ -72,7 +72,7 @@ namespace canmarket.src.BE
                 {
                     key = rnd.Next();
                 }
-                while (key != 1);          
+                while (key == 1);          
             }
             base.Initialize(api);
             if (api.Side == EnumAppSide.Client && !isNewlyplaced)
@@ -232,6 +232,7 @@ namespace canmarket.src.BE
                     }
                     tree.SetVec3i("pos", Pos.ToVec3i());
                     tree.SetInt("num", key);
+                    tree.SetString("byPlayer", player.PlayerName);
                     book.Attributes["warehouse"] = tree;
                     inventory.MarkSlotDirty(0);
                     inventory[0].MarkDirty();

@@ -43,10 +43,12 @@ namespace canmarket.src
         //ECONOMY
         public Part<string[]> IGNORED_STACK_ATTRIBTES_ARRAY = new Part<string[]>(new string[1]);
 
-        public Part<List<string>> IGNORED_STACK_ATTRIBTES_LIST = new Part<List<string>>(new List<string>{"candurabilitybonus"});
+        public Part<HashSet<string>> IGNORED_STACK_ATTRIBTES_LIST = new Part<HashSet<string>>(new HashSet<string>{"candurabilitybonus"});
         public Part<float> MIN_DURABILITY_RATION = new Part<float>(0.95f);
         public Part<float> PERISH_DIVIDER = new Part<float>(2f);
         public Part<float> MESHES_RENDER_DISTANCE = new Part<float>(15);
         public Part<int> CHESTS_PER_TRADE_BLOCK = new Part<int>(6);
+        public Part<int> SEARCH_CONTAINER_RADIUS = new Part<int>(3);
+        public Part<int> SEARCH_WAREHOUE_DISTANCE = new Part<int>(10);
     }
 }

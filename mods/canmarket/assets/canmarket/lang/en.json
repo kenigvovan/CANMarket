@@ -15,5 +15,11 @@
   "item-itemcanchestslist": "Warehouse book",
   "block-rusty-warehouse": "Rusty warehouse",
   "block-iron-warehouse": "Iron warehouse",
-  "block-gold-warehouse": "Gold warehouse"
+  "block-gold-warehouse": "Gold warehouse",
+  "warehousebook-info": "Signed for warehouse at position {0}",
+  "signed-by-player": " by {0}",
+
+
+  "onchest-block-prices": "Prices",
+  "onchest-block-goods": "Goods"
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 
 namespace canmarket.src.GUI
@@ -89,8 +90,8 @@ namespace canmarket.src.GUI
             }
            //SingleComposer.AddInset(ownerText);
             //SingleComposer.AddInset(text);
-            SingleComposer.AddStaticText("Prices", CairoFont.WhiteDetailText().WithFontSize(20), leftText)
-                .AddStaticText("Goods", CairoFont.WhiteMediumText().WithFontSize(20), rightText);
+            SingleComposer.AddStaticText(Lang.Get("canmarket:onchest-block-prices"), CairoFont.WhiteDetailText().WithFontSize(20), leftText)
+                .AddStaticText(Lang.Get("canmarket:onchest-block-goods"), CairoFont.WhiteMediumText().WithFontSize(20), rightText);
             bgBounds.BothSizing = ElementSizing.FitToChildren;
             int[] intArr = new int[Inventory.Count];
             for (int i = 0; i < intArr.Length; i++)
