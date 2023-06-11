@@ -42,7 +42,7 @@ namespace canmarket.src.GUI
             ElementBounds dialogBounds = ElementStdBounds.AutosizedMainDialog.WithAlignment(EnumDialogArea.CenterMiddle);
 
             // Just a simple 300x300 pixel box
-            ElementBounds textBounds = ElementBounds.Fixed(0, 0, 230, 310);
+            ElementBounds textBounds = ElementBounds.Fixed(0, 20, 230, 310);
             ElementBounds ownerText = ElementBounds.FixedPos(EnumDialogArea.CenterTop, 0, 0).WithFixedHeight(20.0).WithFixedWidth(200);
             textBounds.WithChild(ownerText);
             //textBounds.BothSizing = ElementSizing.FitToChildren;
@@ -54,7 +54,7 @@ namespace canmarket.src.GUI
             ElementBounds leftText = ElementBounds.FixedPos(EnumDialogArea.CenterTop, 0, 0).WithFixedHeight(20.0).WithFixedWidth(65);
             leftPart.WithChild(leftText);
            // leftPart.BothSizing = ElementSizing.FitToChildren;
-            ElementBounds rightPart = ElementBounds.FixedPos(EnumDialogArea.RightTop, 0, 40).WithFixedHeight(250.0).WithFixedWidth(120);
+            ElementBounds rightPart = ElementBounds.FixedPos(EnumDialogArea.RightTop, 0, 60).WithFixedHeight(250.0).WithFixedWidth(120);
             bgBounds.WithChild(rightPart);
 
 
@@ -91,7 +91,8 @@ namespace canmarket.src.GUI
            //SingleComposer.AddInset(ownerText);
             //SingleComposer.AddInset(text);
             SingleComposer.AddStaticText(Lang.Get("canmarket:onchest-block-prices"), CairoFont.WhiteDetailText().WithFontSize(20), leftText)
-                .AddStaticText(Lang.Get("canmarket:onchest-block-goods"), CairoFont.WhiteMediumText().WithFontSize(20), rightText);
+                .AddStaticText(Lang.Get("canmarket:onchest-block-goods"), CairoFont.WhiteMediumText().WithFontSize(20), rightText)
+                .AddDialogTitleBar(Lang.Get("canmarket:gui-onchesttradeblock-bar"), OnTitleBarCloseClicked); ;
             bgBounds.BothSizing = ElementSizing.FitToChildren;
             int[] intArr = new int[Inventory.Count];
             for (int i = 0; i < intArr.Length; i++)
@@ -109,7 +110,7 @@ namespace canmarket.src.GUI
             
             for (int i =0; i < 4; i++)
             {
-                ElementBounds tmpEB = ElementBounds.FixedPos(EnumDialogArea.LeftTop, -5, 3 + i * (slotSize + slotPaddingSize)).WithFixedHeight(200.0).WithFixedWidth(25);
+                ElementBounds tmpEB = ElementBounds.FixedPos(EnumDialogArea.LeftTop, -5, 3 + i * (slotSize + slotPaddingSize) + 25).WithFixedHeight(200.0).WithFixedWidth(25);
                 rightSlotsStocks.WithChild(tmpEB);
                 SingleComposer.AddDynamicText((this.Inventory as InventoryCANMarketOnChest).stocks[i].ToString(), CairoFont.WhiteDetailText(), tmpEB, "stock" + i);               
             }
@@ -166,6 +167,10 @@ namespace canmarket.src.GUI
             
             SingleComposer.Compose();
             this.SingleComposer.UnfocusOwnElements();
+        }
+        private void OnTitleBarCloseClicked()
+        {
+            TryClose();
         }
     }
 }

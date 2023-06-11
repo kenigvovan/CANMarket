@@ -28,8 +28,9 @@ namespace canmarket.src.GUI
             /*double elementToDialogPadding = GuiStyle.ElementToDialogPadding;
             var slotsize = GuiElement.scaled(GuiElementPassiveItemSlot.unscaledSlotSize);
             double unscaledSlotPadding = GuiElementItemSlotGridBase.unscaledSlotPadding;*/
-            double SSB = GuiElement.scaled(GuiElementPassiveItemSlot.unscaledSlotSize);
-            double SSP = GuiElement.scaled(GuiElementItemSlotGridBase.unscaledSlotPadding);
+            
+            double SSB = (GuiElementPassiveItemSlot.unscaledSlotSize);
+            double SSP = (GuiElementItemSlotGridBase.unscaledSlotPadding);
             string ownerName = (Inventory as InventoryCANStall)?.be?.ownerName;
             bool openedByOwner = ownerName.Equals("") || ownerName.Equals(capi.World.Player.PlayerName) && !(Inventory as InventoryCANStall).be.adminShop;
             
@@ -57,8 +58,8 @@ namespace canmarket.src.GUI
             }
             int tradesInColumn = 8;
             int columns = (this.Inventory.Count - 2) / 3 / tradesInColumn;
-            double mainWindowWidth = SSB * (columns > 1 ? columns : 2) + columns * (SSB * 3 + SSP * 6);
-            double mainWindowHeight = 48 + 48 + tradesInColumn * SSB + (tradesInColumn + 1) * SSP + 48;
+            double mainWindowWidth = SSB * (columns > 1 ? columns - 1 : 2) + columns * (SSB * 3 + SSP * 4);
+            double mainWindowHeight = SSB + SSB + tradesInColumn * SSB + (tradesInColumn + 1) * SSP + SSB;
 
 
             ElementBounds dialogBounds = ElementStdBounds.AutosizedMainDialog.WithAlignment(EnumDialogArea.CenterMiddle);
@@ -89,7 +90,7 @@ namespace canmarket.src.GUI
 
             bgBounds.BothSizing = ElementSizing.FitToChildren;
             // Lastly, create the dialog
-            SingleComposer = capi.Gui.CreateCompo("marketCompo", dialogBounds)
+            SingleComposer = capi.Gui.CreateCompo("stallCompo", dialogBounds)
                 .AddShadedDialogBG(bgBounds, false)
                 .AddDialogTitleBar(Lang.Get("canmarket:gui-stall-bar"), OnTitleBarCloseClicked);
             if ((Inventory as InventoryCANStall).be.adminShop)
@@ -112,7 +113,7 @@ namespace canmarket.src.GUI
             for(int i = 0; i < columns; i++)
             {
                 var textEl = ElementBounds.FixedPos(EnumDialogArea.LeftTop, tradeSlotsBounds.fixedX + 30 + (i * (162 + 40)), -30)
-                   .WithFixedWidth(162)
+                   .WithFixedWidth((162))
                 .WithFixedHeight(48);
                 //tmBounds.Add(tmp); 
                 tradeSlotsBounds.WithChild(textEl);
@@ -130,7 +131,7 @@ namespace canmarket.src.GUI
                 .WithFixedWidth(200)
                 .WithFixedHeight(40);*/
                 var tmp = ElementBounds.FixedPos(EnumDialogArea.LeftTop, tradeSlotsBounds.fixedX + 30 + curColumn * 200, (i % maxRaws) * 60)
-                    .WithFixedWidth(162)
+                    .WithFixedWidth(((162)))
                  .WithFixedHeight(48);
                 //tmBounds.Add(tmp); 
                 tradeSlotsBounds.WithChild(tmp);
@@ -140,7 +141,7 @@ namespace canmarket.src.GUI
                     tm,
                     tmp,
                     "tradeRaw" + i.ToString() );
-                ElementBounds tmpEB = ElementBounds.FixedPos(EnumDialogArea.LeftTop, tradeSlotsBounds.fixedX + 30 + curColumn * 200 + 165, (i % maxRaws) * 60).WithFixedHeight(200.0).WithFixedWidth(35);
+                ElementBounds tmpEB = ElementBounds.FixedPos(EnumDialogArea.LeftTop, tradeSlotsBounds.fixedX + 30 + curColumn * 200 + 165, (i % maxRaws) * 60 + 25).WithFixedHeight(GuiElement.scaled((200.0))).WithFixedWidth(35);
                 tradeSlotsBounds.WithChild(tmpEB);
                 SingleComposer.AddDynamicText((this.Inventory as InventoryCANStall).be.stocks[i].ToString(), CairoFont.WhiteDetailText(), tmpEB, "stock" + i);
                 
@@ -148,7 +149,7 @@ namespace canmarket.src.GUI
             if (openedByOwner) 
             {
                 ElementBounds booksBounds = ElementBounds.FixedPos(EnumDialogArea.LeftBottom, 0, 0)
-                   .WithFixedWidth(mainWindowWidth)
+                   .WithFixedWidth(mainWindowWidth - 40)
                    .WithFixedHeight(40);
                 tradeSlotsBounds.WithChild(booksBounds);
                 SingleComposer.AddItemSlotGrid(this.Inventory,
@@ -171,6 +172,12 @@ namespace canmarket.src.GUI
         private void OnTitleBarCloseClicked()
         {
             TryClose();
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            //this.SingleComposer.Dispose();
         }
     }
 }

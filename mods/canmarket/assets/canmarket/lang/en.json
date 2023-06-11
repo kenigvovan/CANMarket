@@ -21,5 +21,6 @@
 
 
   "onchest-block-prices": "Prices",
-  "onchest-block-goods": "Goods"
+  "onchest-block-goods": "Goods",
+  "gui-onchesttradeblock-bar": "Trade block"
 }

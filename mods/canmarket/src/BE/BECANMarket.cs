@@ -23,7 +23,7 @@ namespace canmarket.src.BE
     public class BECANMarket : BEMarket,  ITexPositionSource
     {
         public InventoryCANMarketOnChest inventory;
-        GUIDialogCANMarketOwner guiMarket;
+        public GUIDialogCANMarketOwner guiMarket;
         protected CollectibleObject nowTesselatingObj;
         protected Shape nowTesselatingShape;
         public string ownerName;
@@ -636,13 +636,24 @@ namespace canmarket.src.BE
             if (guiMarket == null)
             {
                 ICoreClientAPI capi = Api as ICoreClientAPI;
+                
                 foreach (var it in byPlayer.InventoryManager.OpenedInventories)
                 {
-                    if (it is InventoryCANMarketOnChest)
+                    if (it is InventoryCANStall)
                     {
+                        ((it as InventoryCANStall).be as BECANStall).guiMarket?.TryClose();
                         byPlayer.InventoryManager.CloseInventory(it);
+                        //(it as InventoryCANStall).be
+                        capi.Network.SendBlockEntityPacket((it as InventoryCANStall).be.Pos, 1001);
+                       // capi.Network.SendPacketClient(it.Close(byPlayer));
+                        break;
+                    }
+                    else if (it is InventoryCANMarketOnChest)
+                    {
+                        ((it as InventoryCANMarketOnChest).be as BECANMarket).guiMarket?.TryClose();
+                        byPlayer.InventoryManager.CloseInventory(it);                     
                         capi.Network.SendBlockEntityPacket((it as InventoryCANMarketOnChest).be.Pos, 1001);
-                        capi.Network.SendPacketClient(it.Close(byPlayer));
+                        //capi.Network.SendPacketClient(it.Close(byPlayer));
                         break;
                     }
                 }
