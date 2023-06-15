@@ -450,19 +450,27 @@ namespace canmarket.src.BE
                         ItemStack iS = itSlot.Itemstack;
                         if (iS == null)
                         {
-                            needToPut1 -= tmpInv[0].TryPutInto(this.inventory.Api.World, itSlot, Math.Min(tmpInv[0].Itemstack.StackSize, needToPut1));
-                            if (needToPut1 <= 0 && needToPut2 <= 0)
+                            if (tmpInv[0].Itemstack != null)
                             {
-                                return true;
+                                needToPut1 -= tmpInv[0].TryPutInto(this.inventory.Api.World, itSlot, Math.Min(tmpInv[0].Itemstack.StackSize, needToPut1));
+                                if (needToPut1 <= 0 && needToPut2 <= 0)
+                                {
+                                    return true;
+                                }
                             }
-                            needToPut2 -= tmpInv[1].TryPutInto(this.inventory.Api.World, itSlot, Math.Min(tmpInv[0].Itemstack.StackSize, needToPut2));
-                            if (needToPut1 <= 0 && needToPut2 <= 0)
+                            
+                            if (tmpInv[1].Itemstack != null)
                             {
-                                return true;
+                                needToPut2 -= tmpInv[1].TryPutInto(this.inventory.Api.World, itSlot, Math.Min(tmpInv[1].Itemstack.StackSize, needToPut2));
+                                if (needToPut1 <= 0 && needToPut2 <= 0)
+                                {
+                                    return true;
+                                }
                             }
+                            
                             continue;
                         }
-                        if (iS.Collectible.Equals(iS, tmpInv[0].Itemstack, Config.Current.IGNORED_STACK_ATTRIBTES_ARRAY.Val) && UsefullUtils.IsReasonablyFresh(this.inventory.Api.World, tmpInv[0].Itemstack))
+                        if (needToPut1 > 0 && iS.Collectible.Equals(iS, tmpInv[0].Itemstack, Config.Current.IGNORED_STACK_ATTRIBTES_ARRAY.Val) && UsefullUtils.IsReasonablyFresh(this.inventory.Api.World, tmpInv[0].Itemstack))
                         {
                             needToPut1 -= tmpInv[0].TryPutInto(this.inventory.Api.World, itSlot, needToPut1);
                             if (needToPut1 <= 0 && needToPut2 <= 0)
@@ -470,7 +478,7 @@ namespace canmarket.src.BE
                                 return true;
                             }
                         }
-                        else if(iS.Collectible.Equals(iS, tmpInv[1].Itemstack, Config.Current.IGNORED_STACK_ATTRIBTES_ARRAY.Val) && UsefullUtils.IsReasonablyFresh(this.inventory.Api.World, tmpInv[1].Itemstack))
+                        else if(needToPut2 > 0 && iS.Collectible.Equals(iS, tmpInv[1].Itemstack, Config.Current.IGNORED_STACK_ATTRIBTES_ARRAY.Val) && UsefullUtils.IsReasonablyFresh(this.inventory.Api.World, tmpInv[1].Itemstack))
                         {
                             needToPut2 -= tmpInv[1].TryPutInto(this.inventory.Api.World, itSlot, needToPut2);
                             if (needToPut1 <= 0 && needToPut2 <= 0)
